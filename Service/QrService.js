@@ -38,7 +38,7 @@ const qrService = {
         return { message: "uniqToken repeated" };
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   },
 };

@@ -6,7 +6,7 @@ const qrController = {
       const qr_generate = await qrService.getQr();
       res.status(200).send(qr_generate);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     } // error handling mi moraci
   },
 };

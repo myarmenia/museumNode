@@ -1,8 +1,6 @@
 import jwt from "jsonwebtoken";
 
 const generateAccessToken = () => {
-  
-
   try {
     const token = jwt.sign({}, process.env.ACCESS_TOKEN, {
       expiresIn: "15m",
@@ -14,4 +12,4 @@ const generateAccessToken = () => {
   }
 };
 
-export default generateAccessToken
+export default generateAccessToken;

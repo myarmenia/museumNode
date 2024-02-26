@@ -7,7 +7,7 @@ const connection = async () => {
     return true;
   } catch (error) {
     console.error(error);
-    console.log("mongo not connected");
+    console.log("DB Not Connected");
     return false;
   }
 };
