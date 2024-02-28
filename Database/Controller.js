@@ -1,26 +1,24 @@
 import connection from "./Pool.js";
 let pool;
 
+pool = await connection();
 
-  pool = await connection();
-  
-
-async function getNotes( ){
-  const [row]=await pool.query("SELECT * FROM museumQr")
-  return row
+async function getNotes() {
+  const [row] = await pool.query("SELECT * FROM museumQr");
+  return row;
 }
 
-const notes=await getNotes()
+const notes = await getNotes();
 console.log(notes);
-export const creatDatabase=async()=>{
-  const result = await pool.query(`CREATE DATABASE qr`)
-}
+export const creatDatabase = async () => {
+  const result = await pool.query(`CREATE DATABASE qr`);
+};
 
 export const useDatabase = async () => {
   const results = await pool.query(`USE qr;`);
 };
 
-useDatabase()
+useDatabase();
 
 export const createTable = async () => {
   const results = await pool.query(
@@ -29,7 +27,8 @@ export const createTable = async () => {
       qr BLOB NOT NULL,
       uniqueId varchar(8) NOT NULL,
       PRIMARY KEY (id)
-  )`);
+  )`
+  );
 };
 // createTable()
 
