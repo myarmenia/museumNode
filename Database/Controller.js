@@ -5,16 +5,12 @@ let pool;
   pool = await connection();
 })();
 
-export const createDatabase=async()=>{
-    const results=await pool.query(
-        `CREATE DATABASE museumQr;`
-    )
-}
-export const useDatabase=async()=>{
-    const results=await pool.query(
-        `USE museumQr;`
-    )
-}
+export const createDatabase = async () => {
+  const results = await pool.query(`CREATE DATABASE museumQr;`);
+};
+export const useDatabase = async () => {
+  const results = await pool.query(`USE museumQr;`);
+};
 
 export const createTable = async () => {
   const results = await pool.query(
@@ -31,4 +27,3 @@ export const storeQrToDB = async (qr, uniqueId) => {
     `INSERT INTO museumQr(qr,uniqueId) VALUES('${qr}','${uniqueId}')`
   );
 };
-

@@ -6,9 +6,6 @@ import swaggerUI from "swagger-ui-express";
 import { specs } from "./Utils/Swagger.js";
 import qrRouter from "./Router/QrRouter.js";
 
-
-
-
 const app = express();
 const dotenv = config();
 app.use(express.json());
@@ -21,11 +18,6 @@ app.use(
 
 app.use("/api", qrRouter);
 
-
-
 app.listen(process.env.PORT, () => {
   console.log(`Server running at ${process.env.PORT}`);
 });
-
-
-
