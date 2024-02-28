@@ -13,7 +13,7 @@ export const options = {
       description: "QR geterate API",
     },
     servers: [
-      { url: `http://178.160.195.69:${process.env.PORT}` },
+      { url: `http://node.gorc-ka.am` },
       { url: `http://localhost:${process.env.PORT}` },
     ],
     components: {
