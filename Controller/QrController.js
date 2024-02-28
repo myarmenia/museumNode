@@ -7,7 +7,7 @@ const qrController = {
       res.status(200).send(qr_generate);
     } catch (error) {
       console.error(error);
-    } // error handling mi moraci
+    }
   },
 };
 

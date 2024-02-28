@@ -12,7 +12,10 @@ export const options = {
       version: "1.0.0",
       description: "QR geterate API",
     },
-    servers: [{ url: `http://localhost:${process.env.PORT}` }],
+    servers: [
+      { url: `http://178.160.195.69:${process.env.PORT}` },
+      { url: `http://localhost:${process.env.PORT}` },
+    ],
     components: {
       request: {
         QR: {

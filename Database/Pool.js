@@ -2,10 +2,12 @@ import mysql from "mysql2";
 
 const connection = async () => {
   const connection = mysql.createConnection({
-    host: process.env.db_host,
-    user: process.env.db_user,
-    password: process.env.db_password,
-    database: process.env.db_name,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    // ssl: true,
   });
 
   try {
@@ -22,7 +24,7 @@ const connection = async () => {
     });
     return connection;
   } catch (error) {
-    throw error;
+    console.error(error);
   }
 };
 

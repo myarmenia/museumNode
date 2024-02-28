@@ -16,7 +16,7 @@ app.use(
   swaggerUI.setup(specs, { explorer: true })
 );
 
-app.use("/api", qrRouter);
+app.use("/api/getQr", qrRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at ${process.env.PORT}`);

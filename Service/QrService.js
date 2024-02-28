@@ -33,7 +33,9 @@ const qrService = {
       await useDatabase();
       await createTable();
       await storeQrToDB(qr_code, uniqSlice);
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+    }
   },
 };
 
