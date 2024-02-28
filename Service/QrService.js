@@ -2,7 +2,7 @@ import qr from "qrcode";
 import QrToken from "../Model/QrModel.js";
 import generateAccessToken from "../Utils/Token.js";
 import {
-  createDatabase,
+  creatDatabase,
   createTable,
   storeQrToDB,
   useDatabase,
@@ -29,9 +29,6 @@ const qrService = {
           return code;
         }
       );
-      await createDatabase();
-      await useDatabase();
-      await createTable();
       await storeQrToDB(qr_code, uniqSlice);
     } catch (error) {
       console.error(error);
