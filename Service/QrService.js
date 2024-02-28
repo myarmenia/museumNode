@@ -1,6 +1,12 @@
 import qr from "qrcode";
 import QrToken from "../Model/QrModel.js";
 import generateAccessToken from "../Utils/Token.js";
+import {
+  createDatabase,
+  createTable,
+  storeQrToDB,
+  useDatabase,
+} from "../Database/Controller.js";
 
 const qrService = {
   getQr: async () => {
@@ -23,23 +29,11 @@ const qrService = {
           return code;
         }
       );
-      const searchQr = await QrToken.findOne({
-        uniqueId: uniqSlice,
-      });
-
-      if (!searchQr) {
-        const qrdata = new QrToken({
-          qr: qr_code,
-          uniqueId: uniqSlice,
-        });
-        await qrdata.save();
-        return uniqSlice;
-      } else {
-        return { message: "uniqToken repeated" };
-      }
-    } catch (error) {
-      console.error(error)
-    }
+      await createDatabase();
+      await useDatabase();
+      await createTable();
+      await storeQrToDB(qr_code, uniqSlice);
+    } catch (error) {}
   },
 };
 
