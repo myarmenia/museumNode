@@ -22,11 +22,11 @@ export const options = {
           type: "object",
           properties: {
             qr: { type: "string", description: "QR code" },
-            uniqID: { type: "string", description: "UniqID" },
+            uniqueID: { type: "string", description: "UniqueID" },
           },
           example: {
             qr: "65b358b558bb92966f212454",
-            uniqID: "aEtjR-eb",
+            uniqueID: "aEtjR-eb",
           },
         },
       },
@@ -35,7 +35,7 @@ export const options = {
           type: "object",
           properties: {
             qr: { type: "string", description: "required" },
-            uniqID: { type: "string", description: "required" },
+            uniqueID: { type: "string", description: "required" },
           },
         },
       },
