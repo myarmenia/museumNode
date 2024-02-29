@@ -1,12 +1,7 @@
 import qr from "qrcode";
-import QrToken from "../Model/QrModel.js";
 import generateAccessToken from "../Utils/Token.js";
-import {
-  creatDatabase,
-  createTable,
-  storeQrToDB,
-  useDatabase,
-} from "../Database/Controller.js";
+import { storeQrToDB } from "../Database/Controller.js";
+
 
 const qrService = {
   getQr: async () => {
