@@ -23,9 +23,9 @@ app.use(
 
 app.use("/api/getQr", qrRouter);
 
-// await creatDatabase()
-// await useDatabase();
-// await createTable();
+await creatDatabase();
+await useDatabase();
+await createTable();
 app.listen(process.env.PORT, () => {
   console.log(`Server running at ${process.env.PORT}`);
 });
