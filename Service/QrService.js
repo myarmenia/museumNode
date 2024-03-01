@@ -8,6 +8,7 @@ const qrService = {
       const data = {
         email: "user@exame.ru",
       };
+      console.log("check Service: ", data);
       const uniqToken = generateAccessToken();
       const startIndex = uniqToken.length - 8;
       const endIndex = uniqToken.length - 1;
