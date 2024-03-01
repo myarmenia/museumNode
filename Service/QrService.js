@@ -24,6 +24,7 @@ const qrService = {
           return code;
         }
       );
+      console.log("service => qr_code: ", qr_code);
       await storeQrToDB(qr_code, uniqSlice);
     } catch (error) {
       console.error(error);
