@@ -1,20 +1,15 @@
 import connection from "./Pool.js";
 let pool;
 
+pool = await connection();
 
-  pool = await connection();
-
-
-export const creatDatabase=async()=>{
-  const result = await pool.query(`CREATE DATABASE map`)
-}
-
+export const creatDatabase = async () => {
+  const result = await pool.query(`CREATE DATABASE map`);
+};
 
 export const useDatabase = async () => {
   const results = await pool.query(`USE qr;`);
 };
-
-
 
 export const createTable = async () => {
   const results = await pool.query(
@@ -23,7 +18,8 @@ export const createTable = async () => {
       qr BLOB NOT NULL,
       uniqueId varchar(8) NOT NULL,
       PRIMARY KEY (id)
-  )`);
+  )`
+  );
 };
 
 export const storeQrToDB = async (qr, uniqueId) => {

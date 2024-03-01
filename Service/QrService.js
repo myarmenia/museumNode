@@ -2,7 +2,6 @@ import qr from "qrcode";
 import generateAccessToken from "../Utils/Token.js";
 import { storeQrToDB } from "../Database/Controller.js";
 
-
 const qrService = {
   getQr: async () => {
     try {
