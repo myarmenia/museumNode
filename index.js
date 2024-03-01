@@ -24,7 +24,7 @@ app.use(
 app.use("/api/getQr", qrRouter);
 
 (async () => {
-  await creatDatabase();
+  // await creatDatabase();
   await useDatabase();
   await createTable();
 })();
