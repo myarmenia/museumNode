@@ -12,6 +12,8 @@ const qrService = {
 
       const result = await pool.query(`SELECT * FROM token;`);
 
+      // crypto.randomBytes(4).toString("hex").toUpperCase()
+
       const uniqToken = generateAccessToken();
       const startIndex = uniqToken.length - 17;
       const endIndex = uniqToken.length - 1;
@@ -33,9 +35,11 @@ const qrService = {
 
       if (!find_indb) {
         await storeQrToDB(qr_code, uniqSlice);
+        console.log("qr_code, uniqSlice ====> ", qr_code, uniqSlice);
         return uniqSlice;
       } else {
         const result = await qrController.getQr();
+        console.log("result ====> ", result);
         return result;
         //  const uniq=await fetch("http://localhost:5006/api/getQr").then((res)=>{
         //   return res

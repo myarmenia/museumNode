@@ -22,6 +22,7 @@ export const createTable = async () => {
 };
 
 export const storeQrToDB = async (qr, uniqueId) => {
+  console.log("qr, uniqueId =====> ", qr, uniqueId);
   const results = await pool.query(
     `INSERT INTO token(qr, uniqueId) VALUES('${qr}','${uniqueId}')`
   );
