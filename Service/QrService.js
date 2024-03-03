@@ -1,6 +1,6 @@
 import qr from "qrcode";
 import generateAccessToken from "../Utils/Token.js";
-import { pool, storeQrToDB} from "../Database/Controller.js";
+import { pool, storeQrToDB } from "../Database/Controller.js";
 import qrController from "../Service/QrService.js";
 
 const qrService = {
@@ -34,16 +34,13 @@ const qrService = {
       if (!find_indb) {
         await storeQrToDB(qr_code, uniqSlice);
         return uniqSlice;
-      }else{
-        const result=await qrController.getQr()
+      } else {
+        const result = await qrController.getQr();
         return result;
-      //  const uniq=await fetch("http://localhost:5006/api/getQr").then((res)=>{
-      //   return res
-      //  })
+        //  const uniq=await fetch("http://localhost:5006/api/getQr").then((res)=>{
+        //   return res
+        //  })
       }
-
- 
-      
     } catch (error) {
       console.error(error);
     }

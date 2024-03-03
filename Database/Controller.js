@@ -1,9 +1,6 @@
 import connection from "./Pool.js";
 
-
 export const pool = await connection();
-
-
 
 export const creatDatabase = async () => {
   const result = await pool.query(`CREATE DATABASE museum_qr;`);
@@ -26,7 +23,6 @@ export const createTable = async () => {
 
 export const storeQrToDB = async (qr, uniqueId) => {
   const results = await pool.query(
-    `INSERT INTO token(qr_code,unique_id) VALUES('${qr}','${uniqueId}')`
+    `INSERT INTO token(qr, uniqueId) VALUES('${qr}','${uniqueId}')`
   );
 };
-
