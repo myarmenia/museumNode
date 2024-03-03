@@ -15,14 +15,14 @@ export const createTable = async () => {
     `CREATE TABLE token(
       id int AUTO_INCREMENT,
       qr BLOB NOT NULL,
-      uniqueId varchar(8) NOT NULL,
+      uniqueId varchar(16) NOT NULL,
       PRIMARY KEY (id)
   )`
   );
 };
 
 export const storeQrToDB = async (qr, uniqueId) => {
-  console.log("qr, uniqueId =====> ", qr, uniqueId);
+  // console.log("qr, uniqueId =====> ", qr, uniqueId);
   const results = await pool.query(
     `INSERT INTO token(qr, uniqueId) VALUES('${qr}','${uniqueId}')`
   );
