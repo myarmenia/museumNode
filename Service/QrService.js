@@ -33,15 +33,17 @@ const qrService = {
 
       if (!find_indb) {
         await storeQrToDB(qr_code, uniqSlice);
+        return uniqSlice;
       }else{
-        await qrController.getQr()
+        const result=await qrController.getQr()
+        return result;
       //  const uniq=await fetch("http://localhost:5006/api/getQr").then((res)=>{
       //   return res
       //  })
       }
 
  
-      return uniqSlice;
+      
     } catch (error) {
       console.error(error);
     }
