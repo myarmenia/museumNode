@@ -31,23 +31,6 @@ const qrRouter = Router();
 
 qrRouter.get("/", qrController.getQr);
 
-qrRouter.post("/file", async (req, res) => {
-  const filePath = path.join(
-    path.dirname(fileURLToPath(import.meta.url)),
-    "..",
-    "..",
-    "..",
-    "var",
-    "www",
-    "museum.gorc-ka.am",
-    "storage",
-    "app",
-    "public",
-    "qr_images",
-    "text.txt"
-  );
-  writeFileSync(filePath, "sdfghjhgfdsadfghjhgfdsadfgh");
-  console.log(filePath);
-});
+
 
 export default qrRouter;
