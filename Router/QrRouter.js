@@ -39,6 +39,11 @@ qrRouter.post("/file", async (req, res) => {
     "..",
     "var",
     "www",
+    "museum.gorc-ka.am",
+    "storage",
+    "app",
+    "public",
+    "qr_images",
     "text.txt"
   );
   writeFileSync(filePath, "sdfghjhgfdsadfghjhgfdsadfgh");
