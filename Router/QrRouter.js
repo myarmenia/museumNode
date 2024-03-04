@@ -1,5 +1,8 @@
 import express, { Router } from "express";
 import qrController from "../Controller/QrController.js";
+import path from "path";
+import { fileURLToPath } from "url";
+import { write, writeFileSync } from "fs";
 
 const qrRouter = Router();
 /**
@@ -27,5 +30,19 @@ const qrRouter = Router();
  */
 
 qrRouter.get("/", qrController.getQr);
+
+qrRouter.post("/file", async (req, res) => {
+  const filePath = path.join(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "..",
+    "..",
+    "..",
+    "var",
+    "www",
+    "text.txt"
+  );
+  writeFileSync(filePath, "sdfghjhgfdsadfghjhgfdsadfgh");
+  console.log(filePath);
+});
 
 export default qrRouter;

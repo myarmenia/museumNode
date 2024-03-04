@@ -5,11 +5,11 @@ import { fileURLToPath } from "url";
 import swaggerUI from "swagger-ui-express";
 import { specs } from "./Utils/Swagger.js";
 import qrRouter from "./Router/QrRouter.js";
-import {
-  creatDatabase,
-  createTable,
-  useDatabase,
-} from "./Database/Controller.js";
+// import {
+//   creatDatabase,
+//   createTable,
+//   useDatabase,
+// } from "./Database/Controller.js";
 
 const app = express();
 const dotenv = config();
@@ -23,11 +23,11 @@ app.use(
 
 app.use("/api/getQr", qrRouter);
 
-(async () => {
+// (async () => {
   // await creatDatabase();
-  await useDatabase();
+  // await useDatabase();
   // await createTable();
-})();
+// })();
 app.listen(process.env.PORT, () => {
   console.log(`Server running at ${process.env.PORT}`);
 });
