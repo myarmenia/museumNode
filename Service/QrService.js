@@ -4,7 +4,7 @@ import qrController from "../Service/QrService.js";
 import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
-import { write, writeFileSync } from "fs";
+
 
 const qrService = {
   getQr: async () => {
@@ -52,7 +52,14 @@ const qrService = {
             console.log(err);
           }
           if (!find_pathdb && !find_uniqueIds) {
-            await qr.toFile(qrfilePath, unique_token);
+            const foregroundColor = "#000000"; // Black
+            const backgroundColor = "#FFFFFF";
+            await qr.toFile(qrfilePath, unique_token, {
+              color: {
+                dark: foregroundColor, // Foreground color
+                light: backgroundColor, // Background color
+              },
+            });
 
             await storeQrToDB(qr_path, unique_token);
 
@@ -64,7 +71,7 @@ const qrService = {
         }
       );
 
-      return (unique_token,qr_path);
+      return ({unique_token, qr_path});
     } catch (error) {
       console.error(error);
     }

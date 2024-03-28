@@ -17,6 +17,7 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.0",
     "mysql2": "^3.9.2",
+    "qr-code-styling": "^1.6.0-rc.1",
     "qrcode": "^1.5.3",
     "start": "^5.1.0",
     "swagger-jsdoc": "^6.2.8",
