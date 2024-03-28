@@ -17,26 +17,26 @@ const qrService = {
 
       const unique_token = crypto.randomBytes(8).toString("hex").toUpperCase();
       const qr_path = `public/qr_images/${unique_token}.png`;
-      // const qrfilePath = path.join(
-      //   path.dirname(fileURLToPath(import.meta.url)),
-      //   "..",
-      //   "..",
-      //   `${unique_token}.png`
-      // );
       const qrfilePath = path.join(
         path.dirname(fileURLToPath(import.meta.url)),
         "..",
         "..",
-        "..",
-        "var",
-        "www",
-        "museum.gorc-ka.am",
-        "storage",
-        "app",
-        "public",
-        "qr_images",
         `${unique_token}.png`
       );
+      // const qrfilePath = path.join(
+      //   path.dirname(fileURLToPath(import.meta.url)),
+      //   "..",
+      //   "..",
+      //   "..",
+      //   "var",
+      //   "www",
+      //   "museum.gorc-ka.am",
+      //   "storage",
+      //   "app",
+      //   "public",
+      //   "qr_images",
+      //   `${unique_token}.png`
+      // );
       const find_pathdb = result[0].find((item) => {
         return item.unique_token === unique_token;
       });
@@ -64,7 +64,7 @@ const qrService = {
         }
       );
 
-      return unique_token;
+      return (unique_token,qr_path);
     } catch (error) {
       console.error(error);
     }
