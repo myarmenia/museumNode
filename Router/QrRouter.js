@@ -29,7 +29,7 @@ const qrRouter = Router();
  *                $ref: "#/components/schemas/QR"
  */
 
-qrRouter.get("/", qrController.getQr);
+qrRouter.post("/", qrController.getQr);
 
 
 
