@@ -1,5 +1,5 @@
 import qr from "qrcode";
-import { pool, storeQrToDB } from "../Database/Controller.js";
+import { creatDatabase, createTable, pool, storeQrToDB, useDatabase } from "../Database/Controller.js";
 import qrController from "../Service/QrService.js";
 import crypto from "crypto";
 import path from "path";
@@ -33,17 +33,20 @@ const qrService = {
       //     console.error('There was a problem with your fetch operation:', error);
       //   });
 
-      const arr = [{ standart: 2 }, { discount: 2 },{united:2},{product:2},{subscription:2}];
+      // await creatDatabase()
+      await useDatabase()
+      // await createTable()
+      const arr = { standart: 2,discount: 2,united:2,product:2,subscription:2};
       const resultArr = [];
-      for await (const type of arr) {
+      for (const type in arr) {
         const resArray = [];
         const objByType={}
-        for (let i = 0; i < Object.values(type); i++) {
+        for (let i = 0; i < arr[type]; i++) {
           const typeObj = {};
           const data = {
             email: "user@exame.ru",
           };
-
+        
           const result = await pool.query(`SELECT * FROM token;`);
 
           const unique_token = crypto
@@ -58,6 +61,7 @@ const qrService = {
             "image",
             `${unique_token}.png`
           );
+          
           // const qrfilePath = path.join(
           //   path.dirname(fileURLToPath(import.meta.url)),
           //   "..",
@@ -79,7 +83,7 @@ const qrService = {
             return item.qr_path === qr_path;
           });
           const stJson = JSON.stringify(data);
-          const typeName = Object.keys(type)[0];
+          const typeName = type;
           typeObj.unique_token = unique_token;
           typeObj.qr_path = qr_path;
           resArray.push(typeObj);
@@ -94,23 +98,23 @@ const qrService = {
               if (!find_pathdb && !find_uniqueIds) {
                 let foregroundColor;
                 let backgroundColor;
-                if (Object.keys(type)[0] === "standart") {
+                if (type === "standart") {
                   foregroundColor = "#000000"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if (Object.keys(type)[0]  === "discount") {
+                if (type  === "discount") {
                   foregroundColor = "#863827"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if(Object.keys(type)[0]  === "united"){
+                if(type === "united"){
                   foregroundColor = "#9E8D89"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if(Object.keys(type)[0]  === "product"){
+                if(type === "product"){
                   foregroundColor = "#4BB83A"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if(Object.keys(type)[0]  === "subscription"){
+                if(type === "subscription"){
                   foregroundColor = "#3A71B8"; // Black
                   backgroundColor = "#FFFFFF";
                 }
