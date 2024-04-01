@@ -38,10 +38,12 @@ const qrService = {
       // await createTable()
       // const arr = { standart: 2,discount: 3,united:2,product:3,subscription:2};
       const resultObj = {};
+     
+        
       for (const type in dataObj) {
         const resArray = [];
-        const objByType={}
         for (let i = 0; i < dataObj[type]; i++) {
+          const objByType={}
           const data = {
             email: "user@exame.ru",
           };
