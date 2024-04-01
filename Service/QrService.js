@@ -37,12 +37,11 @@ const qrService = {
       await useDatabase()
       // await createTable()
       // const arr = { standart: 2,discount: 3,united:2,product:3,subscription:2};
-      const resultArr = [];
+      const resultObj = {};
       for (const type in dataObj) {
         const resArray = [];
         const objByType={}
-        for (let i = 0; i < arr[type]; i++) {
-          const typeObj = {};
+        for (let i = 0; i < dataObj[type]; i++) {
           const data = {
             email: "user@exame.ru",
           };
@@ -84,10 +83,13 @@ const qrService = {
           });
           const stJson = JSON.stringify(data);
           const typeName = type;
-          typeObj.unique_token = unique_token;
-          typeObj.qr_path = qr_path;
-          resArray.push(typeObj);
-          objByType[typeName]=resArray
+          objByType.unique_token = unique_token;
+          objByType.qr_path = qr_path;
+          
+          resArray.push(objByType);
+          resultObj[typeName]=resArray
+          
+          
           const qr_code = qr.toString(
             stJson,
             { type: "terminal" },
@@ -133,13 +135,15 @@ const qrService = {
                 const resultrec = await qrController.getQr();
                 return resultrec;
               }
+              
             }
           );
         }
-        resultArr.push(objByType);
+        
+      
       }
-
-      return resultArr;
+      
+      return resultObj;
     } catch (error) {
       console.error(error);
     }
