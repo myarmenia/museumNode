@@ -6,7 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const qrService = {
-  getQr: async () => {
+  getQr: async (dataObj) => {
     try {
       //     const arr=await  fetch('https://api.example.com/data', {
       //   method: 'POST',
@@ -36,9 +36,9 @@ const qrService = {
       // await creatDatabase()
       await useDatabase()
       // await createTable()
-      const arr = { standart: 2,discount: 2,united:2,product:2,subscription:2};
+      // const arr = { standart: 2,discount: 3,united:2,product:3,subscription:2};
       const resultArr = [];
-      for (const type in arr) {
+      for (const type in dataObj) {
         const resArray = [];
         const objByType={}
         for (let i = 0; i < arr[type]; i++) {
