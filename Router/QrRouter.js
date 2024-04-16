@@ -30,6 +30,7 @@ const qrRouter = Router();
  */
 
 qrRouter.post("/", qrController.getQr);
+qrRouter.get("/test",qrController.getTestQr)
 
 
 

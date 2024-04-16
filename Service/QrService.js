@@ -1,53 +1,35 @@
 import qr from "qrcode";
-import { creatDatabase, createTable, pool, storeQrToDB, useDatabase } from "../Database/Controller.js";
+import {
+  creatDatabase,
+  createTable,
+  pool,
+  storeQrToDB,
+  useDatabase,
+} from "../Database/Controller.js";
 import qrController from "../Service/QrService.js";
 import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
+// import QrCodeStyling from "qr-code-styling";
+// import { createCanvas, loadImage } from "canvas";
 
 const qrService = {
-  getQr: async (dataObj) => {
+  getQr: async (typeObj) => {
     try {
-      //     const arr=await  fetch('https://api.example.com/data', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     // Add any other headers as needed
-      //   },
-      //   body: JSON.stringify({
-      //     key1: 'value1',
-      //     key2: 'value2'
-      //     // Add any other data to be sent in the request body
-      //   })
-      // })
-      //   .then(response => {
-      //     if (!response.ok) {
-      //       throw new Error('Network response was not ok');
-      //     }
-      //     return response.json();
-      //   })
-      //   .then(data => {
-      //     console.log(data);
-      //   })
-      //   .catch(error => {
-      //     console.error('There was a problem with your fetch operation:', error);
-      //   });
-
       // await creatDatabase()
-      await useDatabase()
+      await useDatabase();
       // await createTable()
-      // const arr = { standart: 2,discount: 3,united:2,product:3,subscription:2};
+      
       const resultObj = {};
-     
-        
-      for (const type in dataObj) {
+
+      for (const type in typeObj) {
         const resArray = [];
-        for (let i = 0; i < dataObj[type]; i++) {
-          const objByType={}
+        for (let i = 0; i < typeObj[type]; i++) {
+          const objByType = {};
           const data = {
             email: "user@exame.ru",
           };
-        
+
           const result = await pool.query(`SELECT * FROM token;`);
 
           const unique_token = crypto
@@ -62,7 +44,7 @@ const qrService = {
             "image",
             `${unique_token}.png`
           );
-          
+
           // const qrfilePath = path.join(
           //   path.dirname(fileURLToPath(import.meta.url)),
           //   "..",
@@ -87,11 +69,10 @@ const qrService = {
           const typeName = type;
           objByType.unique_token = unique_token;
           objByType.qr_path = qr_path;
-          
+
           resArray.push(objByType);
-          resultObj[typeName]=resArray
-          
-          
+          resultObj[typeName] = resArray;
+
           const qr_code = qr.toString(
             stJson,
             { type: "terminal" },
@@ -106,24 +87,27 @@ const qrService = {
                   foregroundColor = "#000000"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if (type  === "discount") {
+                if (type === "discount") {
                   foregroundColor = "#863827"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if(type === "united"){
+                if (type === "united") {
                   foregroundColor = "#9E8D89"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if(type === "product"){
+                if (type === "product") {
                   foregroundColor = "#4BB83A"; // Black
                   backgroundColor = "#FFFFFF";
                 }
-                if(type === "subscription"){
-                  foregroundColor = "#3A71B8"; // Black
-                  backgroundColor = "#FFFFFF";
+                if (type === "subscription") {
+                  foregroundColor = "#101010"; // Black
+                  backgroundColor = "#065535";
+                
                 }
 
                 await qr.toFile(qrfilePath, unique_token, {
+                  width:280,
+                  height:280,
                   color: {
                     dark: foregroundColor, // Foreground color
                     light: backgroundColor, // Background color
@@ -137,14 +121,11 @@ const qrService = {
                 const resultrec = await qrController.getQr();
                 return resultrec;
               }
-              
             }
           );
         }
-        
-      
       }
-      
+
       return resultObj;
     } catch (error) {
       console.error(error);

@@ -10,6 +10,14 @@ const qrController = {
       console.error(error);
     }
   },
+  getTestQr:async(req,res)=>{
+    try {
+      const qrGen=await qrService.getTestQr()
+      return qrGen
+    } catch (error) {
+      console.error(error)
+    }
+  }
 };
 
 export default qrController;
