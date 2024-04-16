@@ -106,8 +106,8 @@ const qrService = {
                 }
 
                 await qr.toFile(qrfilePath, unique_token, {
-                  width:280,
-                  height:280,
+                  width:221,
+                  height:221,
                   color: {
                     dark: foregroundColor, // Foreground color
                     light: backgroundColor, // Background color
