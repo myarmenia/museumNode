@@ -10,8 +10,10 @@ import qrController from "../Service/QrService.js";
 import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
-// import QrCodeStyling from "qr-code-styling";
-// import { createCanvas, loadImage } from "canvas";
+
+
+
+
 
 const qrService = {
   getQr: async (typeObj) => {
@@ -19,7 +21,7 @@ const qrService = {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
-      
+        
       const resultObj = {};
 
       for (const type in typeObj) {
@@ -81,36 +83,15 @@ const qrService = {
                 console.log(err);
               }
               if (!find_pathdb && !find_uniqueIds) {
-                let foregroundColor;
-                let backgroundColor;
-                if (type === "standart") {
-                  foregroundColor = "#000000"; // Black
-                  backgroundColor = "#FFFFFF";
-                }
-                if (type === "discount") {
-                  foregroundColor = "#863827"; // Black
-                  backgroundColor = "#FFFFFF";
-                }
-                if (type === "united") {
-                  foregroundColor = "#9E8D89"; // Black
-                  backgroundColor = "#FFFFFF";
-                }
-                if (type === "product") {
-                  foregroundColor = "#4BB83A"; // Black
-                  backgroundColor = "#FFFFFF";
-                }
-                if (type === "subscription") {
-                  foregroundColor = "#101010"; // Black
-                  backgroundColor = "#065535";
+               
                 
-                }
 
-                await qr.toFile(qrfilePath, unique_token, {
+                await qr.toFile(qrfilePath, `ԹԱՆԳԱՐԱՆԻ ՏՈՄՍ \n  ${unique_token}`, {
                   width:221,
                   height:221,
                   color: {
-                    dark: foregroundColor, // Foreground color
-                    light: backgroundColor, // Background color
+                    dark: "#000000", // Foreground color
+                    light: "#FFFFFF", // Background color
                   },
                 });
 
