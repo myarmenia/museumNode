@@ -11,19 +11,31 @@ import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
 
-
-
-
-
 const qrService = {
   getQr: async (typeObj) => {
     try {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
-        
-      const resultObj = {};
 
+      const resultObj = {};
+      const types =["standart","discount","free","event","subscription","united","corporative","educational"];
+
+      
+      const objectLength = Object.keys(typeObj).length;
+      const findArray = [];
+
+      for (const type in typeObj) {
+        const findType = types.find((el) => {
+          return el === type;
+        });
+        if (findType&&typeof typeObj[type]==="number") {
+          findArray.push(findType);
+        }
+      }
+      if (findArray.length===objectLength) {
+        
+      
       for (const type in typeObj) {
         const resArray = [];
         for (let i = 0; i < typeObj[type]; i++) {
@@ -39,13 +51,7 @@ const qrService = {
             .toString("hex")
             .toUpperCase();
           const qr_path = `public/qr_images/${unique_token}.png`;
-          // const qrfilePath = path.join(
-          //   path.dirname(fileURLToPath(import.meta.url)),
-          //   "..",
-          //   "..",
-          //   "image",
-          //   `${unique_token}.png`
-          // );
+          
 
           const qrfilePath = path.join(
             path.dirname(fileURLToPath(import.meta.url)),
@@ -83,17 +89,18 @@ const qrService = {
                 console.log(err);
               }
               if (!find_pathdb && !find_uniqueIds) {
-               
-                
-
-                await qr.toFile(qrfilePath, `ԹԱՆԳԱՐԱՆԻ ՏՈՄՍ \n  ${unique_token}`, {
-                  width:221,
-                  height:221,
-                  color: {
-                    dark: "#000000", // Foreground color
-                    light: "#FFFFFF", // Background color
-                  },
-                });
+                await qr.toFile(
+                  qrfilePath,
+                  `ԹԱՆԳԱՐԱՆԻ ՏՈՄՍ \n  ${unique_token}`,
+                  {
+                    width: 221,
+                    height: 221,
+                    color: {
+                      dark: "#000000", // Foreground color
+                      light: "#FFFFFF", // Background color
+                    },
+                  }
+                );
 
                 await storeQrToDB(qr_path, unique_token);
 
@@ -106,8 +113,12 @@ const qrService = {
           );
         }
       }
+    return resultObj;
+    }else{
+      return ({message:"wrong ticket type or number error"})
+    }
 
-      return resultObj;
+      
     } catch (error) {
       console.error(error);
     }
