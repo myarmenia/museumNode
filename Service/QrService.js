@@ -91,7 +91,7 @@ const qrService = {
               if (!find_pathdb && !find_uniqueIds) {
                 await qr.toFile(
                   qrfilePath,
-                  `ԹԱՆԳԱՐԱՆԻ ՏՈՄՍ \n  ${unique_token}`,
+                  unique_token,
                   {
                     width: 221,
                     height: 221,
