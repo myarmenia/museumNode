@@ -17,7 +17,7 @@ const qrService = {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
-
+     
       const resultObj = {};
       const types =["standart","discount","free","event","subscription","united","corporative","educational"];
 
@@ -50,7 +50,7 @@ const qrService = {
             .randomBytes(8)
             .toString("hex")
             .toUpperCase();
-          const qr_path = `public/qr_images/${unique_token}.png`;
+          const qr_path = `public/qr_images/${"#"+unique_token}.png`;
           
 
           const qrfilePath = path.join(
@@ -65,8 +65,12 @@ const qrService = {
             "app",
             "public",
             "qr_images",
-            `${unique_token}.png`
+            `${"#"+unique_token}.png`
           );
+
+        
+
+
           const find_pathdb = result[0].find((item) => {
             return item.unique_token === unique_token;
           });
