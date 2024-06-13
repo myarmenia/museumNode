@@ -15,9 +15,9 @@ export const createTable = async () => {
     `CREATE TABLE token(
       id int AUTO_INCREMENT,
       qr_path varchar(100) NOT NULL,
-      unique_token varchar(16) NOT NULL,
+      unique_token varchar(17) NOT NULL,
       PRIMARY KEY (id)
-  )`
+  );`
   );
 };
 

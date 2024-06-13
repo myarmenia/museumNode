@@ -46,11 +46,12 @@ const qrService = {
 
           const result = await pool.query(`SELECT * FROM token;`);
 
-          const unique_token = crypto
+          const uniq_token = crypto
             .randomBytes(8)
             .toString("hex")
             .toUpperCase();
-          const qr_path = `public/qr_images/${"#"+unique_token}.png`;
+          const unique_token="#"+uniq_token
+          const qr_path = `public/qr_images/${unique_token}.png`;
           
 
           const qrfilePath = path.join(
@@ -65,10 +66,9 @@ const qrService = {
             "app",
             "public",
             "qr_images",
-            `${"#"+unique_token}.png`
+            `${unique_token}.png`
           );
 
-        
 
 
           const find_pathdb = result[0].find((item) => {
