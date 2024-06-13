@@ -17,7 +17,6 @@ const qrService = {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
-     
       const resultObj = {};
       const types =["standart","discount","free","event","subscription","united","corporative","educational"];
 
@@ -47,7 +46,7 @@ const qrService = {
           const result = await pool.query(`SELECT * FROM token;`);
 
           const uniq_token = crypto
-            .randomBytes(8)
+            .randomBytes(7)
             .toString("hex")
             .toUpperCase();
           const unique_token="#"+uniq_token
@@ -68,6 +67,7 @@ const qrService = {
             "qr_images",
             `${unique_token}.png`
           );
+
 
 
 
