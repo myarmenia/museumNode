@@ -17,6 +17,7 @@ const qrService = {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
+
       const resultObj = {};
       const types = [
         "standart",
@@ -56,7 +57,7 @@ const qrService = {
               .toString("hex")
               .toUpperCase();
 
-            const unique_token = "#" + uniq_token;
+            const unique_token = uniq_token;
             const qr_path = `public/qr_images/${unique_token}.png`;
 
             const qrfilePath = path.join(
@@ -73,6 +74,8 @@ const qrService = {
               "qr_images",
               `${unique_token}.png`
             );
+
+
 
 
 
@@ -109,7 +112,7 @@ const qrService = {
 
                   // Generate the hash in hexadecimal format
                   const token = hash.digest("hex");
-                  const qrToken=uniq_token+"#"+token
+                  const qrToken=uniq_token+"#"+token;
                   console.log("SHA-256 Token:", token);
 
 
