@@ -74,6 +74,7 @@ const qrService = {
               `${unique_token}.png`
             );
 
+
             const find_pathdb = result[0].find((item) => {
               return item.unique_token === unique_token;
             });
@@ -106,10 +107,11 @@ const qrService = {
 
                   // Generate the hash in hexadecimal format
                   const token = hash.digest("hex");
-
+                  const qrToken=uniq_token+"#"+token
                   console.log("SHA-256 Token:", token);
 
-                  await qr.toFile(qrfilePath, token, {
+
+                  await qr.toFile(qrfilePath, qrToken, {
                     width: 221,
                     height: 221,
                     color: {
