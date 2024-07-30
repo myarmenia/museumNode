@@ -75,6 +75,8 @@ const qrService = {
             );
 
 
+
+
             const find_pathdb = result[0].find((item) => {
               return item.unique_token === unique_token;
             });
@@ -97,13 +99,13 @@ const qrService = {
                   console.log(err);
                 }
                 if (!find_pathdb && !find_uniqueIds) {
-                  const timestamp = Date.now().toString();
+                  // const timestamp = Date.now().toString();
 
                   // Create a SHA-256 hash object
                   const hash = crypto.createHash("sha256");
 
                   // Update the hash with the timestamp
-                  hash.update(timestamp);
+                  hash.update(uniq_token);
 
                   // Generate the hash in hexadecimal format
                   const token = hash.digest("hex");
