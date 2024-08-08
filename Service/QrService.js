@@ -10,6 +10,7 @@ import qrController from "../Service/QrService.js";
 import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
+import moment from "moment";
 
 const qrService = {
   getQr: async (typeObj) => {
@@ -17,7 +18,7 @@ const qrService = {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
-
+     
       const resultObj = {};
       const types = [
         "standart",
@@ -60,6 +61,7 @@ const qrService = {
             const unique_token = uniq_token;
             const qr_path = `public/qr_images/${unique_token}.png`;
 
+
             const qrfilePath = path.join(
               path.dirname(fileURLToPath(import.meta.url)),
               "..",
@@ -74,11 +76,6 @@ const qrService = {
               "qr_images",
               `${unique_token}.png`
             );
-
-
-
-
-
 
             const find_pathdb = result[0].find((item) => {
               return item.unique_token === unique_token;
@@ -112,9 +109,10 @@ const qrService = {
 
                   // Generate the hash in hexadecimal format
                   const token = hash.digest("hex");
-                  const qrToken=uniq_token+"#"+token;
+                  const now = moment();
+                  const Time=now.format("YYYY-MM-DD HH:mm:ss").split(" ").join("T");
+                  const qrToken = uniq_token + "#" + token + "#" +Time;
                   console.log("SHA-256 Token:", token);
-
 
                   await qr.toFile(qrfilePath, qrToken, {
                     width: 221,

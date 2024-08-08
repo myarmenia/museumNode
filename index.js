@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import swaggerUI from "swagger-ui-express";
 import { specs } from "./Utils/Swagger.js";
 import qrRouter from "./Router/QrRouter.js";
+
 // import {
 //   creatDatabase,
 //   createTable,
@@ -28,6 +29,10 @@ app.use("/api/getQr", qrRouter);
   // await useDatabase();
   // await createTable();
 // })();
+
+
+
+
 app.listen(process.env.PORT, () => {
   console.log(`Server running at ${process.env.PORT}`);
 });
