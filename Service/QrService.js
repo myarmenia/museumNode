@@ -11,6 +11,7 @@ import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
 import moment from "moment";
+import  timestamp  from "unix-timestamp"
 
 const qrService = {
   getQr: async (typeObj) => {
@@ -18,7 +19,7 @@ const qrService = {
       // await creatDatabase()
       await useDatabase();
       // await createTable()
-     
+      // const typeObj = { standart: 1, discount: 1 };
       const resultObj = {};
       const types = [
         "standart",
@@ -61,7 +62,6 @@ const qrService = {
             const unique_token = uniq_token;
             const qr_path = `public/qr_images/${unique_token}.png`;
 
-
             const qrfilePath = path.join(
               path.dirname(fileURLToPath(import.meta.url)),
               "..",
@@ -76,6 +76,14 @@ const qrService = {
               "qr_images",
               `${unique_token}.png`
             );
+
+            // const qrfilePath = path.join(
+            //   path.dirname(fileURLToPath(import.meta.url)),
+            //   "..",
+            //   "..",
+            //   "qr_images",
+            //   `${unique_token}.png`
+            // );
 
             const find_pathdb = result[0].find((item) => {
               return item.unique_token === unique_token;
@@ -110,8 +118,21 @@ const qrService = {
                   // Generate the hash in hexadecimal format
                   const token = hash.digest("hex");
                   const now = moment();
-                  const Time=now.format("YYYY-MM-DD HH:mm:ss").split(" ").join("T");
-                  const qrToken = uniq_token + "#" + token + "#" +Time;
+
+                  const Time = now
+                    .format("YYYY-MM-DD HH:mm:ss")
+                    .split(" ")
+                    .join("T");
+                  console.log("specificDate", Time);
+
+                  console.log("Time",Time);
+                  
+                  // Convert to Unix timestamp in seconds
+                  const unixTimestamp = timestamp.fromDate(Time)
+
+                  console.log("Specific Date Unix Timestamp:", unixTimestamp);
+
+                  const qrToken = uniq_token + "#" + token + "#" + unixTimestamp;
                   console.log("SHA-256 Token:", token);
 
                   await qr.toFile(qrfilePath, qrToken, {
