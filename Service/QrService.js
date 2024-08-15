@@ -30,6 +30,7 @@ const qrService = {
         "united",
         "corporative",
         "educational",
+        "event-config"
       ];
 
       const objectLength = Object.keys(typeObj).length;
