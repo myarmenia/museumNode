@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: webex-node:latest
+    restart: always
+    ports:
+      - "8088:5000"
+    networks:
+      - app-network
+
+
+networks:
+  app-network:
+    driver: bridge
