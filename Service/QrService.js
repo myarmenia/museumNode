@@ -11,7 +11,8 @@ import crypto from "crypto";
 import path from "path";
 import { fileURLToPath } from "url";
 import moment from "moment";
-import  timestamp  from "unix-timestamp"
+import timestamp from "unix-timestamp";
+import fs from "fs"
 
 const qrService = {
   getQr: async (typeObj) => {
@@ -30,7 +31,7 @@ const qrService = {
         "united",
         "corporative",
         "educational",
-        "event-config"
+        "event-config",
       ];
 
       const objectLength = Object.keys(typeObj).length;
@@ -61,17 +62,25 @@ const qrService = {
               .toUpperCase();
 
             const unique_token = uniq_token;
+            const path="../../Museum/museum.gorc-ka.am/storage/app/public/qr_images"
+            // Проверяем, существует ли папка
+            if (!fs.existsSync(path)) {
+              // Если папка не существует, создаем её
+              fs.mkdirSync(path);
+              console.log("Папка qr_images успешно создана.");
+            } else {
+              console.log("Папка qr_images уже существует.");
+            }
             const qr_path = `public/qr_images/${unique_token}.png`;
 
             const qrfilePath = path.join(
-              // path.dirname(fileURLToPath(import.meta.url)),
-              // "..",
-              // "..",
-              // "..",
+              path.dirname(fileURLToPath(import.meta.url)),
+              "..",
+              "..",
               // "var",
               // "www",
-              // "Museum",
-              "https://node.museumsarmenia.am",
+              "Museum",
+              "museum.gorc-ka.am",
               "storage",
               "app",
               "public",
@@ -127,14 +136,15 @@ const qrService = {
                     .join("T");
                   console.log("specificDate", Time);
 
-                  console.log("Time",Time);
-                  
+                  console.log("Time", Time);
+
                   // Convert to Unix timestamp in seconds
-                  const unixTimestamp = timestamp.fromDate(Time)
+                  const unixTimestamp = timestamp.fromDate(Time);
 
                   console.log("Specific Date Unix Timestamp:", unixTimestamp);
 
-                  const qrToken = uniq_token + "#" + token + "#" + unixTimestamp;
+                  const qrToken =
+                    uniq_token + "#" + token + "#" + unixTimestamp;
                   console.log("SHA-256 Token:", token);
 
                   await qr.toFile(qrfilePath, qrToken, {
