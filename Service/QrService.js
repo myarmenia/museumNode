@@ -12,7 +12,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import moment from "moment";
 import timestamp from "unix-timestamp";
-import { existsSync, mkdirSync } from 'fs';
+// import { existsSync, mkdirSync } from "fs";
 
 const qrService = {
   getQr: async (typeObj) => {
@@ -62,23 +62,26 @@ const qrService = {
               .toUpperCase();
 
             const unique_token = uniq_token;
-            const path="../../Museum/museum.gorc-ka.am/storage/app/public/qr_images"
+            // const path =
+            //   "../../Museum/museum.gorc-ka.am/storage/app/public/qr_images";
             // Проверяем, существует ли папка
-            if (!existsSync(path)) {
-              // Если папка не существует, создаем её
-              mkdirSync(path);
-              console.log("Папка qr_images успешно создана.");
-            } else {
-              console.log("Папка qr_images уже существует.");
-            }
+            // if (!existsSync(path)) {
+            //   // Если папка не существует, создаем её
+            //   mkdirSync(path);
+            //   console.log("Папка qr_images успешно создана.");
+            // } else {
+            //   console.log("Папка qr_images уже существует.");
+            // }
             const qr_path = `public/qr_images/${unique_token}.png`;
 
             const qrfilePath = path.join(
               path.dirname(fileURLToPath(import.meta.url)),
-              "..",
-              "..",
-              "Museum",
-              "museum.gorc-ka.am",
+              // "..",
+              // "..",
+
+              "https://node.museumsarmenia.am",
+              // "Museum",
+              // "museum.gorc-ka.am",
               "storage",
               "app",
               "public",
