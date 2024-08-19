@@ -80,6 +80,7 @@ const qrService = {
               // "storage",
               // "app",
               // "public",
+              "/",
               "qr_images",
               `${unique_token}.png`
             );
