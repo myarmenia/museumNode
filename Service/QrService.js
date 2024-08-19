@@ -76,14 +76,15 @@ const qrService = {
 
             const qrfilePath = path.join(
               // path.dirname(fileURLToPath(import.meta.url)),
-              "https://manage.museumsarmenia.am",
-              "storage",
-              "app",
-              "public",
+              // "https://manage.museumsarmenia.am",
+              // "storage",
+              // "app",
+              // "public",
               "qr_images",
               `${unique_token}.png`
             );
-
+            console.log(qrfilePath);
+            
             // const qrfilePath = path.join(
             //   path.dirname(fileURLToPath(import.meta.url)),
             //   "..",
