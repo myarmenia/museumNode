@@ -70,7 +70,7 @@ const qrService = {
               "..",
               "var",
               "www",
-              "museum.gorc-ka.am",
+              "manage.museumsarmenia.am",
               "storage",
               "app",
               "public",

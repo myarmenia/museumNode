@@ -15,7 +15,8 @@ const connection = async () => {
         // ssl: true,
       })
       .promise();
-
+      console.log("DB Connected");
+      
     return pool;
   } catch (error) {
     console.error(error);
