@@ -76,12 +76,7 @@ const qrService = {
 
             const qrfilePath = path.join(
               path.dirname(fileURLToPath(import.meta.url)),
-              // "..",
-              // "..",
-
               "https://node.museumsarmenia.am",
-              // "Museum",
-              // "museum.gorc-ka.am",
               "storage",
               "app",
               "public",
