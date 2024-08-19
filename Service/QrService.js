@@ -75,8 +75,8 @@ const qrService = {
             const qr_path = `public/qr_images/${unique_token}.png`;
 
             const qrfilePath = path.join(
-              path.dirname(fileURLToPath(import.meta.url)),
-              "https://node.museumsarmenia.am",
+              // path.dirname(fileURLToPath(import.meta.url)),
+              "https://manage.museumsarmenia.am",
               "storage",
               "app",
               "public",
