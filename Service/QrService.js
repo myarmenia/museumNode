@@ -12,7 +12,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import moment from "moment";
 import timestamp from "unix-timestamp";
-import fs from "fs"
+import { existsSync, mkdirSync } from 'fs';
 
 const qrService = {
   getQr: async (typeObj) => {
@@ -64,9 +64,9 @@ const qrService = {
             const unique_token = uniq_token;
             const path="../../Museum/museum.gorc-ka.am/storage/app/public/qr_images"
             // Проверяем, существует ли папка
-            if (!fs.existsSync(path)) {
+            if (!existsSync(path)) {
               // Если папка не существует, создаем её
-              fs.mkdirSync(path);
+              mkdirSync(path);
               console.log("Папка qr_images успешно создана.");
             } else {
               console.log("Папка qr_images уже существует.");
@@ -77,8 +77,6 @@ const qrService = {
               path.dirname(fileURLToPath(import.meta.url)),
               "..",
               "..",
-              // "var",
-              // "www",
               "Museum",
               "museum.gorc-ka.am",
               "storage",
