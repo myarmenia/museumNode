@@ -12,7 +12,7 @@ services:
     networks:
       - app-network
     volumes:
-      - /home/webex/Museum/museum.gorc-ka.am/storage/app/public/qr_images:/qr_images
+      - /home/webex/Museum/Museums/storage/app/public/qr_images:/qr_images
 
 
 
