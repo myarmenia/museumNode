@@ -34,7 +34,9 @@ const qrService = {
         "event-config",
         "school",
         "other_service",
-        "partner"
+        "partner",
+        "student",
+        "school_child"
       ];
 
       const objectLength = Object.keys(typeObj).length;
@@ -88,7 +90,7 @@ const qrService = {
               `${unique_token}.png`
             );
             console.log(qrfilePath);
-            
+
             // const qrfilePath = path.join(
             //   path.dirname(fileURLToPath(import.meta.url)),
             //   "..",
